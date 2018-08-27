@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  background: black;
+  color: white;
+}
+
+.map-container {
+  height: 500px;
+  width: 500px;
+}
+
+.map {
+  height: 100%;
+}
