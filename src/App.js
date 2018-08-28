@@ -7,7 +7,8 @@ import Map from './Map';
 
 class App extends Component {
     state = {
-        venues: []
+        venues: [],
+        select: {}
     }
 
     componentDidMount() {
@@ -28,7 +29,7 @@ class App extends Component {
             this.setState({
                 venues: response.data.response.groups[0].items
             });
-            /* console.log(response.data.response.groups[0].items); */
+             console.log(response.data.response.groups[0].items);
         })
         .catch(error => {
             console.log("ERROR!! " + error)
@@ -36,12 +37,20 @@ class App extends Component {
 
     }
 
+    onSelectMarker = (location) => {
+
+      this.setState({
+        select: location
+    });
+      /* console.log(location); */
+  }
+
     render() {
         return (
             <div className="App">
                 <div className="container">
-                    <Sidebar />
-                    <Map places= {this.state.venues} /> 
+                    <Sidebar places= {this.state.venues}  onSelectMarker={this.onSelectMarker} />
+                    <Map places= {this.state.venues} selected = {this.state.select} /> 
                 </div>
             </div>
         );

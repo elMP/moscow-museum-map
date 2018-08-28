@@ -11,7 +11,16 @@ class Map extends Component {
         this.initMap();
     } 
 
+    isEmpty(obj) {
+        for (var key in obj) {
+          return false;
+        }
+        return true;
+    }
+
     initMap = () => {
+/*         console.log("selected", this.props.selected, this.props.selected.length); */
+
         map = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 55.7525, lng: 37.6230},
           zoom: 10
@@ -29,6 +38,13 @@ class Map extends Component {
               title: place.venue.name
             })        
           
+            
+            if ( !this.isEmpty(this.props.selected) && (this.props.selected.venue.id === place.venue.id)) {
+/*                 console.log(place.venue.name, this.props.selected.venue.name); */
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            }
+
             marker.addListener('click', function() {
                 infowindow.setContent(content);
                 infowindow.open(map, marker);

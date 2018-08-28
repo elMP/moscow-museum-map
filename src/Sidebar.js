@@ -6,6 +6,13 @@ class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <p>Sidebar</p>
+                {this.props.places.map((place, index)  => (
+                    <p key={index}
+                        onClick={ () => this.props.onSelectMarker(place) }
+                    >
+                       {place.venue.name}
+                    </p>
+                ))}
             </div>
         )
     }
