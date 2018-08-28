@@ -25,6 +25,10 @@ class Map extends Component {
         })
 
         let infowindow = new window.google.maps.InfoWindow();
+        infowindow.addListener("closeclick", () => {               
+            infowindow.close();
+            this.props.onInfowindowClose();
+        })
 
         this.props.places.map((place) => {
 
@@ -34,8 +38,7 @@ class Map extends Component {
               position: {lat: place.venue.location.lat , lng: place.venue.location.lng},
               map: map,
               title: place.venue.name
-            })        
-          
+            })                  
             
             if ( !this.isEmpty(this.props.selected) && (this.props.selected.venue.id === place.venue.id)) {
                 marker.setAnimation(window.google.maps.Animation.BOUNCE);
@@ -55,7 +58,7 @@ class Map extends Component {
 
                 infowindow.setContent(content);
                 infowindow.open(map, marker);
-            }) 
+            })
         });
     }
     

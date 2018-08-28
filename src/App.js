@@ -46,9 +46,14 @@ class App extends Component {
       /* console.log(location); */
   }
 
-  updateQuery = (query) => {
-      this.setState({ query })
-  }
+    updateQuery = (query) => {
+        this.setState({ query })
+    }
+
+    onInfowindowClose = () => {
+        this.setState({ select: {} })
+    }
+
     render() {
         let displaylist;
         if (this.state.query) {
@@ -63,7 +68,7 @@ class App extends Component {
             <div className="App">
                 <div className="container">
                     <Sidebar places= {displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
-                    <Map places= {displaylist} selected = {this.state.select} /> 
+                    <Map places= {displaylist} selected = {this.state.select} onInfowindowClose={this.onInfowindowClose}/> 
                 </div>
             </div>
         );
