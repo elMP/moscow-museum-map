@@ -31,8 +31,12 @@ class Map extends Component {
         })
 
         this.props.places.forEach((place) => {
-
-            let content = place.venue.name;
+            let content = `<h3>${place.venue.name.replace(' ', '<br>')}</h3>
+            <p style="text-align:left">${place.venue.categories[0].name}</p>
+            <address>${place.venue.location.address}</address>
+            <br><br>
+            <p style="text-align:right">Data was provided by <a href="https://foursquare.com/" target="_blank">Foursquare</a></p>
+            `;
 
             let marker = new window.google.maps.Marker({
               position: {lat: place.venue.location.lat , lng: place.venue.location.lng},

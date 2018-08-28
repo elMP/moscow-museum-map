@@ -30,7 +30,7 @@ class App extends Component {
             this.setState({
                 venues: response.data.response.groups[0].items
             });
-             /* console.log(response.data.response.groups[0].items); */
+ /*             console.log(response.data.response.groups[0].items); */
         })
         .catch(error => {
             console.log("ERROR!! " + error)
