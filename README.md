@@ -32,7 +32,7 @@ Navigate to http://localhost:3000/ or wait untill browser opens the page itself.
   ```$ yarn ```
   ```$ yarn build ```
   
-* Run 
+* Run production server
   * using npm
   ```$ npm install -g serve```, 
   then ```$ serve -s build``` 
