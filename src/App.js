@@ -32,7 +32,8 @@ class App extends Component {
             });
         })
         .catch(error => {
-            console.log("ERROR!! " + error)
+            console.log("ERROR!! " + error);
+            alert("Parent server is not available. \nNo data will be shown until it is back online.");
         })
 
     }
