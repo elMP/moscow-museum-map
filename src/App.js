@@ -83,7 +83,7 @@ class App extends Component {
                           }} >
                           <span></span>
                       </div>}
-                      <h1 className="heading">My neighborhood map</h1>
+                      <h1 className="heading">Moscow Museums Map</h1>
                 </nav>
                 <div className="container">
                     <Sidebar places={displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
