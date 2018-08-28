@@ -8,7 +8,8 @@ import Map from './Map';
 class App extends Component {
     state = {
         venues: [],
-        select: {}
+        select: {},
+        query: ""
     }
 
     componentDidMount() {
@@ -29,7 +30,7 @@ class App extends Component {
             this.setState({
                 venues: response.data.response.groups[0].items
             });
-             console.log(response.data.response.groups[0].items);
+             /* console.log(response.data.response.groups[0].items); */
         })
         .catch(error => {
             console.log("ERROR!! " + error)
@@ -45,12 +46,24 @@ class App extends Component {
       /* console.log(location); */
   }
 
+  updateQuery = (query) => {
+      this.setState({ query })
+  }
     render() {
+        let displaylist;
+        if (this.state.query) {
+            /* console.log("Query",this.state.query); */
+            displaylist = this.state.venues.filter(place => place.venue.name.toLowerCase().includes(this.state.query.toLowerCase()));
+            /* console.log("fil",fil); */
+        }
+        else
+            displaylist = this.state.venues;
+
         return (
             <div className="App">
                 <div className="container">
-                    <Sidebar places= {this.state.venues}  onSelectMarker={this.onSelectMarker} />
-                    <Map places= {this.state.venues} selected = {this.state.select} /> 
+                    <Sidebar places= {displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
+                    <Map places= {displaylist} selected = {this.state.select} /> 
                 </div>
             </div>
         );

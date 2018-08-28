@@ -3,9 +3,19 @@ import React, { Component } from 'react'
 class Sidebar extends Component {
 
     render() {
-        return (
+        /* console.log(this.props.searchQuery); */
+        return (            
             <div className="sidebar">
-                <p>Sidebar</p>
+                <div className="search">
+                    <input
+                        role="search"
+                        aria-label="search for coffee places"
+                        type="text"
+                        placeholder="Search.."
+                        value={this.props.searchQuery}
+                        onChange={(event) => this.props.updateQuery(event.target.value)}
+                    />
+                </div>
                 {this.props.places.map((place, index)  => (
                     <p key={index}
                         onClick={ () => this.props.onSelectMarker(place) }
