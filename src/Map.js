@@ -19,8 +19,6 @@ class Map extends Component {
     }
 
     initMap = () => {
-/*         console.log("selected", this.props.selected, this.props.selected.length); */
-
         map = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 55.7525, lng: 37.6230},
           zoom: 10
@@ -40,12 +38,21 @@ class Map extends Component {
           
             
             if ( !this.isEmpty(this.props.selected) && (this.props.selected.venue.id === place.venue.id)) {
-/*                 console.log(place.venue.name, this.props.selected.venue.name); */
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(()=> {
+                    marker.setAnimation(null)
+                }, 600);
+
                 infowindow.setContent(content);
                 infowindow.open(map, marker);
             }
 
             marker.addListener('click', function() {
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(()=> {
+                    marker.setAnimation(null)
+                }, 600);
+
                 infowindow.setContent(content);
                 infowindow.open(map, marker);
             }) 
