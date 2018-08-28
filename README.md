@@ -32,8 +32,16 @@ Navigate to http://localhost:3000/ or wait untill browser opens the page itself.
   ```$ yarn ```
   ```$ yarn build ```
   
-Run ```$ yarn global add serve```, then ```$ serve``` and open http://localhost:5000/ to view the production build.
-For run with npm use ```$ npm install -g serve```, then ```$ serve -s build``` and open http://localhost:5000/ to view the production build.
+* Run 
+  * using npm
+  ```$ npm install -g serve```, 
+  then ```$ serve -s build``` 
+  and open http://localhost:5000/ to view the production build.
+  * using yarn
+  ```$ yarn global add serve```, 
+  then ```$ serve``` 
+  and open http://localhost:5000/ to view the production build.
+
    
   
 
