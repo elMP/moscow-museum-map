@@ -77,7 +77,7 @@ class Map extends Component {
     render() {        
         return (
             <div className="map-container">
-                <div id="map">
+                <div id="map" role="application" aria-label="Map with museums labels">
                 </div>
             </div>
         )

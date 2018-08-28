@@ -68,7 +68,7 @@ class App extends Component {
             <div className="App">
                 <nav className="nav">
                       {<div className="menu-icon"
-                          aria-label="list of locations"
+                          aria-label="show places list"
                           tabIndex="0"
                           onClick={() => this.showMenu()}
                           onKeyDown={(e) => {
@@ -80,7 +80,7 @@ class App extends Component {
                       </div>}
                       <h1 className="heading">Moscow Museums Map</h1>
                 </nav>
-                <div className="container">
+                <div className="container" role="main">
                     <Sidebar places={displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
                     <Map places={displaylist} selected={this.state.select} onInfowindowClose={this.onInfowindowClose}/> 
                 </div>

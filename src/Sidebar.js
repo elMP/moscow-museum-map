@@ -9,14 +9,14 @@ class Sidebar extends Component {
                 <div>
                     <input className="search"
                         role="search"
-                        aria-label="search for coffee places"
+                        aria-label="search for museums"
                         type="text"
                         placeholder="Search.."
                         value={this.props.searchQuery}
                         onChange={(event) => this.props.updateQuery(event.target.value)}
                     />
                 </div>
-                <div className="places">
+                <div className="places" aria-label="Museums list">
                     {this.props.places.map((place, index)  => (
                         <p className="place" 
                             key={index}
