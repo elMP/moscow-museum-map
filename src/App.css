@@ -1,21 +1,160 @@
- .App {
-  text-align: center;
+.App {
+    text-align: center;
+    display: flex;  
+    flex-direction: column;
+}
+
+.nav {
+    display: flex;    
+    justify-content: center;
+    align-items: baseline;
+    background-color: gray;
+    padding: 10px;
+    color: white; 
+}
+
+.heading {
+    z-index: 10;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.menu-icon {
+    z-index: 10;
+    min-width: 40px;
+    height: 10px;
+    position: relative;
+    transition: .5s ease-in-out;
+    cursor: pointer; 
+}
+
+.menu-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    opacity: 1;
+    left: 0;    
+    top: 0px;
+    transition: .25s ease-in-out; 
+    transform-origin: left center; 
+}
+
+.menu-icon span::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    top: -10px;
+    transition: .25s ease-in-out;
+    transform-origin: left center;
+}
+
+.menu-icon span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    top: 10px;
+    transition: .25s ease-in-out;
+    transform-origin: left center; 
+}
+
+.menu-icon.open span {
+    transform: rotate(45deg);
+    top: -14px;
+    left: 10px; 
+}
+
+.menu-icon.open span::before {
+    width: 0%;
+    opacity: 0; 
+}
+
+.menu-icon.open span::after {
+    transform: rotate(-90deg);
+    top: 20px;
+    left: 20px; 
 }
 
 .container {
-  display: flex;
+    display: flex;
+    height: 90vh;
 }
 
 .sidebar {
-  background: black;
-  color: white;
+    display: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.sidebar.open {
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    padding: 10px;
+    padding-top: 63px;
+    background-color: gray;
+    align-items: left;    
+}  
+
+
+.search {
+    padding: 5px;
+    line-height: 30px;
+    font-size: 20px; 
+    width: 200px;
+  }
+
+.places {
+    margin: 0;
+    padding: 10px;
+    height: calc(100vh - 127px);
+    overflow: auto; 
+}
+
+.place {
+    list-style: none;
+    cursor: pointer;
+    color: white;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.place:hover {
+    color: black; 
 }
 
 .map-container {
-  height: 500px;
-  width: 500px;
+    width: 100%;
+    height: calc(100vh - 63px); 
 }
 
-#map {
-  height: 100%;
+ #map {
+    width: 100%;
+    height: 100%;
+} 
+
+@media (min-width: 600px) {
+    .sidebar.open {
+        width: 300px;
+    }    
 }

@@ -54,6 +54,11 @@ class App extends Component {
         this.setState({ select: {} })
     }
 
+    showMenu = () => {
+      document.querySelector('.menu-icon').classList.toggle('open');
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+
     render() {
         let displaylist;
         if (this.state.query) {
@@ -66,9 +71,23 @@ class App extends Component {
 
         return (
             <div className="App">
+                <nav className="nav">
+                      {<div className="menu-icon"
+                          aria-label="list of locations"
+                          tabIndex="0"
+                          onClick={() => this.showMenu()}
+                          onKeyDown={(e) => {
+                            if (e.keyCode === 9) {
+                              this.showMenu()
+                            }
+                          }} >
+                          <span></span>
+                      </div>}
+                      <h1 className="heading">My neighborhood map</h1>
+                </nav>
                 <div className="container">
-                    <Sidebar places= {displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
-                    <Map places= {displaylist} selected = {this.state.select} onInfowindowClose={this.onInfowindowClose}/> 
+                    <Sidebar places={displaylist}  onSelectMarker={this.onSelectMarker} updateQuery={this.updateQuery} searchQuery={this.state.query} />
+                    <Map places={displaylist} selected={this.state.select} onInfowindowClose={this.onInfowindowClose}/> 
                 </div>
             </div>
         );
