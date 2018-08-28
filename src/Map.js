@@ -1,45 +1,49 @@
 import React, { Component } from 'react';
 
+let map;
+
 class Map extends Component {
     componentDidMount() {
-        this.renderMap()
-    }
+        this.initMap();
+      }
     
-    renderMap = () => {
-        loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBX872Y3qubdo3i464VcQzoZUMydJx41Js&callback=initMap")
-        window.initMap = this.initMap
-    }
-    
-    
+    componentDidUpdate(){
+        this.initMap();
+    } 
+
     initMap = () => {
-        var map = new window.google.maps.Map(document.getElementById('map'), {
+        map = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 55.7525, lng: 37.6230},
-          zoom: 14
+          zoom: 10
         })
+
+        let infowindow = new window.google.maps.InfoWindow();
+
+        this.props.places.map((place) => {
+
+            let content = place.venue.name;
+
+            let marker = new window.google.maps.Marker({
+              position: {lat: place.venue.location.lat , lng: place.venue.location.lng},
+              map: map,
+              title: place.venue.name
+            })        
+          
+            marker.addListener('click', function() {
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            }) 
+        });
     }
     
-    render() {
+    render() {        
         return (
             <div className="map-container">
-                <div id="map"></div>
+                <div id="map">
+                </div>
             </div>
         )
       }
     }
-
-/*         {this.props.places.map((place, index)  => (
-            <Marker key={index}
-                position={ place }
-           />
- */
-
-function loadScript(url) {
-    var index  = window.document.getElementsByTagName("script")[0]
-    var script = window.document.createElement("script")
-    script.src = url
-    script.async = true
-    script.defer = true
-    index.parentNode.insertBefore(script, index)
-}
 
 export default Map;
