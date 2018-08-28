@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-/* import logo from './logo.svg'; */
 import axios from 'axios';
 import './App.css';
 import Sidebar from './Sidebar';
@@ -16,6 +15,7 @@ class App extends Component {
         this.getVenues()
     }
 
+    //get places from foursquare api
     getVenues = () => {
         const endPoint = "https://api.foursquare.com/v2/venues/explore?"
         const parameters = {
@@ -30,7 +30,6 @@ class App extends Component {
             this.setState({
                 venues: response.data.response.groups[0].items
             });
- /*             console.log(response.data.response.groups[0].items); */
         })
         .catch(error => {
             console.log("ERROR!! " + error)
@@ -39,11 +38,7 @@ class App extends Component {
     }
 
     onSelectMarker = (location) => {
-
-      this.setState({
-        select: location
-    });
-      /* console.log(location); */
+      this.setState({select: location});
   }
 
     updateQuery = (query) => {
@@ -54,17 +49,17 @@ class App extends Component {
         this.setState({ select: {} })
     }
 
+    //show sidebar with places list
     showMenu = () => {
       document.querySelector('.menu-icon').classList.toggle('open');
       document.querySelector('.sidebar').classList.toggle('open');
     }
 
     render() {
+        //if wa have query - filter places that match query
         let displaylist;
         if (this.state.query) {
-            /* console.log("Query",this.state.query); */
             displaylist = this.state.venues.filter(place => place.venue.name.toLowerCase().includes(this.state.query.toLowerCase()));
-            /* console.log("fil",fil); */
         }
         else
             displaylist = this.state.venues;

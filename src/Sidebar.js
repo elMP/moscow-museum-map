@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
+//sidebar with search box and list of places
 class Sidebar extends Component {
 
     render() {
-        /* console.log(this.props.searchQuery); */
         return (            
             <div className="sidebar">
                 <div>
