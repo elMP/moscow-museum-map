@@ -30,7 +30,7 @@ class Map extends Component {
             this.props.onInfowindowClose();
         })
 
-        this.props.places.map((place) => {
+        this.props.places.forEach((place) => {
 
             let content = place.venue.name;
 
